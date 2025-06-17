@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Cadastro de Participantes - Cavalgada</h1>
+
+  <form id="cadastroForm">
+    <label>Nome: <input type="text" id="nome" required></label>
+    <label>Email: <input type="email" id="email"></label>
+    <label>Telefone: <input type="tel" id="telefone"></label>
+    <label>É Cavaleiro?
+      <select id="cavaleiro">
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+    </label>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <h2>Buscar Participante</h2>
+  <input type="text" id="searchInput" placeholder="Buscar por nome ou telefone...">
+
+  <h2>Lista de Participantes</h2>
+  <table id="tabelaParticipantes">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Cavaleiro</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <button onclick="exportarParticipantes()">Exportar Dados</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
