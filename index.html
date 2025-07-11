@@ -8,40 +8,107 @@
 </head>
 <body>
 
-  <h1>Cadastro de Participantes - Cavalgada</h1>
+    <div class="estoque">
+        <h1>Controle de Estoque - Camisas</h1>
 
-  <form id="cadastroForm">
-    <label>Nome: <input type="text" id="nome" required></label>
-    <label>Email: <input type="email" id="email"></label>
-    <label>Telefone: <input type="tel" id="telefone"></label>
-    <label>É Cavaleiro?
-      <select id="cavaleiro">
-        <option value="Sim">Sim</option>
-        <option value="Não">Não</option>
-      </select>
-    </label>
-    <button type="submit">Cadastrar</button>
-  </form>
+        <form id="estoqueForm">
+        <label>Tamanho:
+            <select id="tamanho">
+            <option value="3">3</option>
+            <option value="6">6</option>
+            <option value="9">9</option>
+            <option value="12">12</option>
+            <option value="P">P</option>
+            <option value="M">M</option>
+            <option value="G">G</option>
+            <option value="GG">GG</option>
+            <option value="XG">XG</option>
+            </select>
+        </label>
+        <label>Quantidade:
+            <input type="number" id="quantidade" min="1" required>
+        </label>
+        <label>Preço Unitário (R$):
+            <input type="number" id="preco" step="0.01" min="0" required>
+        </label>
+        <button type="submit">Adicionar ao Estoque</button>
+        </form>
 
-  <h2>Buscar Participante</h2>
-  <input type="text" id="searchInput" placeholder="Buscar por nome ou telefone...">
+        <h2>Estoque de Camisas</h2>
+        <table id="tabelaEstoque">
+        <thead>
+            <tr>
+            <th>Tamanho</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+            <th>Subtotal</th>
+            <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        </table>
 
-  <h2>Lista de Participantes</h2>
-  <table id="tabelaParticipantes">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Telefone</th>
-        <th>Email</th>
-        <th>Cavaleiro</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+        <p><strong>Total de Camisas:</strong> <span id="totalCamisas">0</span></p>
+        <p><strong>Valor Total do Estoque:</strong> R$ <span id="totalEstoque">0.00</span></p>
+        <!-- Botão para gerar o PDF -->
+        <button onclick="gerarPDFEstoque()">Gerar PDF do Estoque</button>
+        
+    </div>
 
-  <button onclick="exportarParticipantes()">Exportar Dados</button>
+    <div class="participantes">
+
+        <h1>Cadastro de Participantes - Cavalgada</h1>
+
+        <form id="cadastroForm">
+            <label>Nome: <input type="text" id="nome" required></label>
+            <label>Telefone: <input type="tel" id="telefone"></label>
+            <label>Tamanho da Camisa:
+            <select id="camisaTamanho">
+                <option value="">Nenhuma</option>
+                <option value="P">P</option>
+                <option value="M">M</option>
+                <option value="G">G</option>
+                <option value="GG">GG</option>
+            </select>
+            </label>
+
+            <label>Quantidade de Camisas:
+            <input type="number" id="camisaQuantidade" min="0" value="0">
+            </label>
+            <div>
+               <label>É Cavaleiro?</label>
+               <label><input type="radio" name="cavaleiro" value="Sim"> Sim</label>
+                <label><input type="radio" name="cavaleiro" value="Não"> Não</label> 
+            </div>
+            
+            
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <h2>Buscar Participante</h2>
+        <input type="text" id="searchInput" placeholder="Buscar por nome ou telefone...">
+
+        <h2>Lista de Participantes</h2>
+        <table id="tabelaParticipantes">
+            <thead>
+            <tr>
+                 <th>Nome</th>
+                <th>Telefone</th>
+                <th>Cavaleiro</th>
+                <th>Camisa</th>
+                <th>Pagamento</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <button onclick="exportarParticipantes()">Exportar Dados</button>
+        <button onclick="exportarParaCSV()">Exportar CSV</button>
+  </div>
 
   <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
